@@ -1,4 +1,4 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -7,7 +7,7 @@ import time
 
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -82,6 +82,9 @@ class NewVisitorTest(LiveServerTestCase):
         
         # Satisfied, they both go back to sleep
 
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
+
     def test_layout_and_styling(self):
         # Edith goes to the home page
         self.browser.get(self.live_server_url)
@@ -104,6 +107,3 @@ class NewVisitorTest(LiveServerTestCase):
             512,
             delta=5
         )
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
