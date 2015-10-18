@@ -1,0 +1,14 @@
+description "Gunicorn server for Superlists”
+
+start on net-device-up 
+stop on shutdown
+
+respawn
+
+setuid root
+chdir /root/sites/superlist/source
+
+exec ../virtualenv/bin/gunicorn \ 
+   --bind unix:/tmp/superlist.socket \ 
+   superlists.wsgi:application 
+
